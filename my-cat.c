@@ -15,9 +15,10 @@ int main(int argc, char* argv[]) {
 	// Loop through each argument
 	for (int i = 1; i < argc; i++) {
 		// Try to open file
-		file = fopen(argv[i], "r");	
+		file = fopen(argv[i], "r");
 		if (file == NULL) {
-			fprintf(stderr, "my-cat: cannot open file\n");
+			// Test did not pass with stderr
+			fprintf(stdout, "wcat: cannot open file\n");
 			free(line);
 			exit(1);
 		}
