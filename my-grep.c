@@ -6,7 +6,7 @@ int main(int argc, char* argv[]) {
 	
 	// Check if number of arguments is invalid
 	if (argc < 2) {
-		printf("my-grep: searchterm [file ...]\n");
+		printf("wgrep: searchterm [file ...]\n");
 		exit(1);
 	} 
 	
@@ -20,11 +20,10 @@ int main(int argc, char* argv[]) {
 
 	// Read user input if only search term given
 	if (argc < 3) {
-		printf("Give inputs (send empty line to quit):\n");
 		while (getline(&line, &lineSize, stdin) > 1) {
 			// Check if substring is included in line
 			if (strstr(line, searchTerm) != NULL) {
-				printf("Given line had: %s\n", searchTerm);
+                                printf("%s", line);
 			}
 		}
 	} else {
@@ -32,7 +31,8 @@ int main(int argc, char* argv[]) {
 			// Try to open file
 			file = fopen(argv[i], "r");	
 			if (file == NULL) {
-				fprintf(stderr, "my-grep: cannot open file\n");
+				// Test did not pass with stderr
+				fprintf(stdout, "wgrep: cannot open file\n");
 				free(line);
 				exit(1);
 			}
